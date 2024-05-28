@@ -1,0 +1,103 @@
+[gd_scene load_steps=16 format=3 uid="uid://5g1thqrlhhwn"]
+
+[ext_resource type="PackedScene" uid="uid://d0dnsg611eogs" path="res://nodes/player.tscn" id="1_bk64j"]
+[ext_resource type="PackedScene" uid="uid://cie5ctlcfo1dr" path="res://nodes/landing_pad.tscn" id="2_3qqcm"]
+[ext_resource type="PackedScene" uid="uid://b0qsvlc6qr77c" path="res://nodes/rock.tscn" id="3_jjltg"]
+[ext_resource type="PackedScene" uid="uid://dkkggvs2fs5h3" path="res://nodes/launch_pad.tscn" id="4_8mp6v"]
+[ext_resource type="Material" uid="uid://dknshcu8cjnad" path="res://materials/glass_material00.tres" id="5_io1gv"]
+[ext_resource type="Material" uid="uid://duv4tqlus6o2g" path="res://materials/glass_yellow_material00.tres" id="6_kr24o"]
+[ext_resource type="PackedScene" uid="uid://d1hh582ui7mbc" path="res://nodes/floor.tscn" id="7_3d03s"]
+[ext_resource type="PackedScene" uid="uid://dgf287sw8cp5w" path="res://nodes/borders.tscn" id="8_md6tm"]
+[ext_resource type="PackedScene" uid="uid://cqvgdjgu6emxe" path="res://nodes/background.tscn" id="9_41mxy"]
+[ext_resource type="PackedScene" uid="uid://do4fvgs47r1ib" path="res://nodes/dust_particles.tscn" id="10_227yk"]
+[ext_resource type="PackedScene" uid="uid://c2jqcspsrtdss" path="res://nodes/star_particles.tscn" id="11_uii2b"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_67p5m"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3ocmv"]
+sky_top_color = Color(0.054902, 0.0745098, 0.101961, 1)
+sky_horizon_color = Color(0.0823529, 0.0862745, 0.0862745, 1)
+sky_curve = 0.212132
+sky_energy_multiplier = 0.9
+sky_cover_modulate = Color(0.0470588, 0.0392157, 0.00784314, 1)
+ground_bottom_color = Color(0.25098, 0.141176, 0.0941176, 1)
+ground_horizon_color = Color(0.0823529, 0.0862745, 0.0901961, 1)
+ground_curve = 0.0414106
+
+[sub_resource type="Sky" id="Sky_l002f"]
+sky_material = SubResource("ProceduralSkyMaterial_3ocmv")
+
+[sub_resource type="Environment" id="Environment_xtr0g"]
+background_mode = 2
+sky = SubResource("Sky_l002f")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Level" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 95)
+fov = 10.0
+
+[node name="Player" parent="." instance=ExtResource("1_bk64j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1, 0)
+
+[node name="LandingPad" parent="." instance=ExtResource("2_3qqcm")]
+next_level_file = "res://Levels/level_3.tscn"
+
+[node name="Rocks" type="Node" parent="."]
+
+[node name="RockBig" parent="Rocks" instance=ExtResource("3_jjltg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03146, 1.16313, -0.332666)
+
+[node name="RockBig2" parent="Rocks" instance=ExtResource("3_jjltg")]
+transform = Transform3D(0.0836339, 0.492956, 0, -0.492956, 0.0836339, 0, 0, 0, 0.5, 4.65687, 0.741571, -1.05188)
+
+[node name="RockBig4" parent="Rocks" instance=ExtResource("3_jjltg")]
+transform = Transform3D(0.491253, 0.0931163, 0, 0.0287405, -0.151626, 0.475588, 0.0885699, -0.467267, -0.154326, -4.23457, 0.223647, -1.05188)
+
+[node name="RockBig3" parent="Rocks" instance=ExtResource("3_jjltg")]
+transform = Transform3D(0.193436, -0.0675812, 0.219124, 0.0673296, 0.290778, 0.0302439, -0.219201, 0.0296775, 0.202658, 3.5921, 0.215859, 0.624079)
+
+[node name="LaunchPad" parent="." instance=ExtResource("4_8mp6v")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12, 0, 0)
+
+[node name="MeshGlass" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.37925, 0)
+visible = false
+material_override = ExtResource("5_io1gv")
+mesh = SubResource("CapsuleMesh_67p5m")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.27354, 8.37925, 0)
+visible = false
+material_override = ExtResource("6_kr24o")
+mesh = SubResource("CapsuleMesh_67p5m")
+
+[node name="Floor" parent="." instance=ExtResource("7_3d03s")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xtr0g")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.25, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 0, 7.14291, 16.9974)
+light_color = Color(0.909804, 0.541176, 0.376471, 1)
+light_energy = 5.816
+light_indirect_energy = 6.333
+light_volumetric_fog_energy = 10.703
+light_angular_distance = 17.75
+shadow_enabled = true
+shadow_bias = 7.916
+shadow_normal_bias = 2.262
+shadow_reverse_cull_face = true
+shadow_transmittance_bias = -9.728
+shadow_blur = 0.734
+
+[node name="Borders" parent="." instance=ExtResource("8_md6tm")]
+
+[node name="Background" parent="." instance=ExtResource("9_41mxy")]
+visible = false
+
+[node name="DustParticles" parent="." instance=ExtResource("10_227yk")]
+
+[node name="StarParticles" parent="." instance=ExtResource("11_uii2b")]
