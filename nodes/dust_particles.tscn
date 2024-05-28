@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://do4fvgs47r1ib"]
+
+[ext_resource type="Texture2D" uid="uid://cmgyrmurf7cjq" path="res://images/puff2.png" id="1_hxm4b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2amtj"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_hxm4b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0uqdp"]
+emission_shape = 1
+emission_sphere_radius = 17.15
+particle_flag_disable_z = true
+direction = Vector3(10, 0, 0)
+gravity = Vector3(0, 1, 0)
+initial_velocity_min = 9.71
+initial_velocity_max = 9.71
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 59.26
+color = Color(1, 1, 1, 0.0705882)
+hue_variation_max = 0.24
+
+[sub_resource type="QuadMesh" id="QuadMesh_2sq43"]
+size = Vector2(0.5, 0.5)
+
+[node name="DustParticles" type="GPUParticles3D"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, -16)
+material_override = SubResource("StandardMaterial3D_2amtj")
+amount = 20
+lifetime = 1.17
+speed_scale = 0.5
+interpolate = false
+fract_delta = false
+visibility_aabb = AABB(-2.68738, -2.71776, -4, 5.37476, 5.43551, 8)
+process_material = SubResource("ParticleProcessMaterial_0uqdp")
+draw_pass_1 = SubResource("QuadMesh_2sq43")

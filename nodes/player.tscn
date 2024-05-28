@@ -1,0 +1,431 @@
+[gd_scene load_steps=53 format=3 uid="uid://d0dnsg611eogs"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_h0ekv"]
+[ext_resource type="PackedScene" uid="uid://ccxhodxe5885x" path="res://models/ufo.glb" id="2_aq8im"]
+[ext_resource type="AudioStream" uid="uid://dvf4w67okftyf" path="res://sounds/crash2.ogg" id="3_chpec"]
+[ext_resource type="AudioStream" uid="uid://hdjm5qxrhqmd" path="res://sounds/warp3.ogg" id="4_di5dq"]
+[ext_resource type="AudioStream" uid="uid://lo5ysc6wbl3s" path="res://sounds/boost.ogg" id="5_afe4r"]
+[ext_resource type="Texture2D" uid="uid://cmgyrmurf7cjq" path="res://images/puff2.png" id="6_2s2nf"]
+[ext_resource type="Texture2D" uid="uid://bvq5jag4jflr6" path="res://images/success_2.png" id="7_7u62x"]
+[ext_resource type="Texture2D" uid="uid://lv42x13qsbw3" path="res://images/explosion_2.png" id="8_7liht"]
+[ext_resource type="Material" uid="uid://c3bbmam73gw0n" path="res://materials/Mat_Flare00.tres" id="8_bfljp"]
+[ext_resource type="AudioStream" uid="uid://ck0xsmn2yjjxm" path="res://sounds/init.ogg" id="10_i88l2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uinim"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+disable_ambient_light = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("6_2s2nf")
+uv2_scale = Vector3(0.1, 0.1, 0.1)
+billboard_mode = 1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g5qcv"]
+direction = Vector3(0, -1, 0)
+spread = 19.0
+gravity = Vector3(0, -20, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+damping_min = 9.0
+damping_max = 9.0
+scale_min = 0.1
+scale_max = 0.1
+hue_variation_min = -0.08
+hue_variation_max = 0.37
+
+[sub_resource type="QuadMesh" id="QuadMesh_vqo4d"]
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_chf8i"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("7_7u62x")
+billboard_mode = 1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d6lp0"]
+emission_shape = 1
+emission_sphere_radius = 1.84
+direction = Vector3(-1, -1, 0)
+spread = 66.46
+flatness = 0.34
+gravity = Vector3(0, 0, 0)
+radial_accel_max = 17.22
+color = Color(0.4, 0.407843, 0.878431, 1)
+hue_variation_min = 0.37
+hue_variation_max = 0.74
+
+[sub_resource type="QuadMesh" id="QuadMesh_2sq43"]
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_72ctw"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("7_7u62x")
+billboard_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmujv"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("8_7liht")
+
+[sub_resource type="Curve" id="Curve_y27j6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_8v8se"]
+max_value = 5.0
+_data = [Vector2(0, 1024), 0.0, 0.0, 0, 0, Vector2(1e-05, 5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_rvdaj"]
+_data = [Vector2(0.229391, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_r2y44"]
+curve_x = SubResource("Curve_y27j6")
+curve_y = SubResource("Curve_8v8se")
+curve_z = SubResource("Curve_rvdaj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3ec7h"]
+emission_shape = 1
+emission_sphere_radius = 0.2
+particle_flag_align_y = true
+spread = 180.0
+gravity = Vector3(0, -20, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 25.0
+scale_min = 0.15
+scale_max = 0.25
+scale_curve = SubResource("CurveXYZTexture_r2y44")
+color = Color(5, 2, 1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_kk5fc"]
+
+[sub_resource type="Curve" id="Curve_0vefh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_u2u4d"]
+curve = SubResource("Curve_0vefh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xkx0p"]
+gravity = Vector3(0, 0, 0)
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_u2u4d")
+color = Color(2.5, 1, 0.5, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_onudb"]
+
+[sub_resource type="Gradient" id="Gradient_51413"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qr0yb"]
+gradient = SubResource("Gradient_51413")
+
+[sub_resource type="Curve" id="Curve_t5vjy"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ilkcr"]
+curve = SubResource("Curve_t5vjy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_56euq"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 0.4
+spread = 180.0
+gravity = Vector3(0, -2, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 2.0
+scale_min = 0.75
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_ilkcr")
+color = Color(5, 2, 1, 1)
+color_ramp = SubResource("GradientTexture1D_qr0yb")
+
+[sub_resource type="QuadMesh" id="QuadMesh_2ibh0"]
+
+[sub_resource type="Curve" id="Curve_76w6g"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5jd1w"]
+curve = SubResource("Curve_76w6g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_koh1o"]
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 0.4
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 2.0
+scale_min = 3.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_5jd1w")
+color = Color(0, 0, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_bmg8a"]
+
+[sub_resource type="Curve" id="Curve_7yiw3"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_x5vww"]
+curve = SubResource("Curve_7yiw3")
+
+[sub_resource type="Curve" id="Curve_jr1ge"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wkrc0"]
+curve = SubResource("Curve_jr1ge")
+
+[sub_resource type="Curve" id="Curve_hkfeu"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.978587, 0.589474), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_w4mgr"]
+curve = SubResource("Curve_hkfeu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cu57f"]
+lifetime_randomness = 0.46
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 15, 0)
+initial_velocity_max = 0.5
+angular_velocity_curve = SubResource("CurveTexture_x5vww")
+linear_accel_min = -66.12
+linear_accel_max = -4.9
+linear_accel_curve = SubResource("CurveTexture_wkrc0")
+scale_curve = SubResource("CurveTexture_w4mgr")
+
+[sub_resource type="QuadMesh" id="QuadMesh_qvbl6"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dhhuk"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 1.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_liqbx"]
+top_radius = 0.0
+bottom_radius = 0.2
+height = 0.5
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6qdmu"]
+height = 0.154892
+radius = 1.43311
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_cqi75"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_s46t5"]
+height = 1.0
+radius = 0.606443
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_wudbo"]
+radius = 0.659617
+
+[node name="Player" type="RigidBody3D"]
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+max_contacts_reported = 10
+contact_monitor = true
+linear_damp = 1.0
+angular_damp = 3.0
+script = ExtResource("1_h0ekv")
+
+[node name="ufo" parent="." instance=ExtResource("2_aq8im")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="CrashAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_chpec")
+
+[node name="SuccessAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_di5dq")
+volume_db = -9.905
+
+[node name="FireParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.406056, 0)
+material_override = SubResource("StandardMaterial3D_uinim")
+emitting = false
+amount = 32
+lifetime = 0.47
+speed_scale = 0.99
+randomness = 0.35
+visibility_aabb = AABB(-4, -4, -4, 8, 4, 8)
+process_material = SubResource("ParticleProcessMaterial_g5qcv")
+draw_pass_1 = SubResource("QuadMesh_vqo4d")
+
+[node name="LeftFireParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.316133, -0.406056, 0)
+material_override = SubResource("StandardMaterial3D_uinim")
+emitting = false
+amount = 32
+lifetime = 0.47
+speed_scale = 0.99
+randomness = 0.35
+visibility_aabb = AABB(-4, -4, -4, 8, 4, 8)
+process_material = SubResource("ParticleProcessMaterial_g5qcv")
+draw_pass_1 = SubResource("QuadMesh_vqo4d")
+
+[node name="RightFireParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.312311, -0.406056, 0)
+material_override = SubResource("StandardMaterial3D_uinim")
+emitting = false
+amount = 32
+lifetime = 0.47
+speed_scale = 0.99
+randomness = 0.35
+visibility_aabb = AABB(-4, -4, -4, 8, 4, 8)
+process_material = SubResource("ParticleProcessMaterial_g5qcv")
+draw_pass_1 = SubResource("QuadMesh_vqo4d")
+
+[node name="SuccessParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.205744, 0)
+material_override = SubResource("StandardMaterial3D_chf8i")
+emitting = false
+amount = 20
+lifetime = 0.54
+speed_scale = 1.19
+explosiveness = 0.58
+randomness = 0.51
+visibility_aabb = AABB(-2.68738, -2.71776, -4, 5.37476, 5.43551, 8)
+process_material = SubResource("ParticleProcessMaterial_d6lp0")
+draw_pass_1 = SubResource("QuadMesh_2sq43")
+
+[node name="SuccessParticles2" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.205744, 0)
+material_override = SubResource("StandardMaterial3D_72ctw")
+emitting = false
+amount = 20
+lifetime = 0.54
+speed_scale = 1.19
+explosiveness = 0.58
+randomness = 0.51
+visibility_aabb = AABB(-2.68738, -2.71776, -4, 5.37476, 5.43551, 8)
+process_material = SubResource("ParticleProcessMaterial_d6lp0")
+draw_pass_1 = SubResource("QuadMesh_2sq43")
+
+[node name="ExplosionNode" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23694, 0)
+
+[node name="SparksParticles" type="GPUParticles3D" parent="ExplosionNode"]
+material_override = SubResource("StandardMaterial3D_vmujv")
+emitting = false
+amount = 20
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_3ec7h")
+draw_pass_1 = SubResource("QuadMesh_kk5fc")
+
+[node name="FlashParticles" type="GPUParticles3D" parent="ExplosionNode"]
+material_override = ExtResource("8_bfljp")
+emitting = false
+amount = 1
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_xkx0p")
+draw_pass_1 = SubResource("QuadMesh_onudb")
+
+[node name="ExplFireParticles" type="GPUParticles3D" parent="ExplosionNode"]
+material_override = ExtResource("8_bfljp")
+emitting = false
+amount = 13
+lifetime = 0.55
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_56euq")
+draw_pass_1 = SubResource("QuadMesh_2ibh0")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="ExplosionNode"]
+material_override = ExtResource("8_bfljp")
+emitting = false
+amount = 10
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_koh1o")
+draw_pass_1 = SubResource("QuadMesh_bmg8a")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="ExplosionNode"]
+visible = false
+material_override = ExtResource("8_bfljp")
+amount = 20
+speed_scale = 4.27
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_cu57f")
+draw_pass_1 = SubResource("QuadMesh_qvbl6")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+visible = false
+mesh = SubResource("CylinderMesh_dhhuk")
+
+[node name="Cockpit" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+mesh = SubResource("CylinderMesh_liqbx")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+visible = false
+
+[node name="CollisionDisk" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0192765, 0)
+shape = SubResource("CylinderShape3D_6qdmu")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CollisionDisk"]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_cqi75")
+skeleton = NodePath("../..")
+
+[node name="CollisionBody" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0936998, -0.111216, 0)
+shape = SubResource("CylinderShape3D_s46t5")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CollisionBody"]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_cqi75")
+skeleton = NodePath("../..")
+
+[node name="CollisionBody2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0137503, 0.273043, 0)
+shape = SubResource("SphereShape3D_wudbo")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CollisionBody2"]
+transform = Transform3D(1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_cqi75")
+skeleton = NodePath("../..")
+
+[node name="BoostAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_afe4r")
+
+[node name="InitAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_i88l2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://c2jqcspsrtdss"]
+
+[ext_resource type="Texture2D" uid="uid://dsnyynqla5tke" path="res://images/explosion_3.png" id="1_8mvph"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_on552"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 1, 1, 0.419608)
+albedo_texture = ExtResource("1_8mvph")
+subsurf_scatter_strength = 0.49
+grow_amount = 16.0
+point_size = 7.2
+proximity_fade_distance = 239.6
+
+[sub_resource type="Curve" id="Curve_i8fa0"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.507732, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_4f8wk"]
+curve = SubResource("Curve_i8fa0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ketnu"]
+emission_shape = 1
+emission_sphere_radius = 51.95
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_4f8wk")
+
+[sub_resource type="QuadMesh" id="QuadMesh_fo6ef"]
+
+[node name="StarParticles" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.4957, -33)
+material_override = SubResource("StandardMaterial3D_on552")
+lifetime = 0.58
+preprocess = 0.97
+speed_scale = 0.29
+explosiveness = 0.19
+visibility_aabb = AABB(-15.047, -4, -4, 30.094, 8, 8)
+process_material = SubResource("ParticleProcessMaterial_ketnu")
+draw_pass_1 = SubResource("QuadMesh_fo6ef")

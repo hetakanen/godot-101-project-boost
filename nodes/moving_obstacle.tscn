@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvp4q5lqe4xan"]
+
+[ext_resource type="Script" path="res://scripts/moving_item.gd" id="1_jfwpy"]
+[ext_resource type="PackedScene" uid="uid://8fiu4pxl7n27" path="res://models/rock01.glb" id="3_dhm5r"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5axat"]
+
+[node name="MovingObstacle" type="AnimatableBody3D" groups=["Hazards"]]
+script = ExtResource("1_jfwpy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_5axat")
+
+[node name="rock01" parent="." instance=ExtResource("3_dhm5r")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)

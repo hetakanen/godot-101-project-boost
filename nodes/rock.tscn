@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0qsvlc6qr77c"]
+
+[ext_resource type="PackedScene" uid="uid://8fiu4pxl7n27" path="res://models/rock01.glb" id="2_iddij"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_q113a"]
+radius = 2.94361
+
+[node name="RockBig" type="StaticBody3D" groups=["Hazards"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4853, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0726042, -0.0524054, 0)
+shape = SubResource("SphereShape3D_q113a")
+
+[node name="rock01" parent="." instance=ExtResource("2_iddij")]
+transform = Transform3D(-0.158771, -3.4928, -0.158607, 0, -0.158771, 3.4964, -3.4964, 0.158607, 0.00720232, -0.179523, -0.018243, -0.419174)

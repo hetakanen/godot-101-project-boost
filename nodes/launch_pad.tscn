@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkkggvs2fs5h3"]
+
+[ext_resource type="PackedScene" uid="uid://b1nn0viux4q4d" path="res://models/platform.glb" id="1_bvmns"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_67lmj"]
+height = 0.877032
+radius = 0.908339
+
+[node name="LaunchPad" type="StaticBody3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_67lmj")
+
+[node name="platform" parent="." instance=ExtResource("1_bvmns")]
