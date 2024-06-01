@@ -1,0 +1,99 @@
+[gd_scene load_steps=13 format=3 uid="uid://csbuueepl88m0"]
+
+[ext_resource type="PackedScene" uid="uid://d1hh582ui7mbc" path="res://nodes/floor.tscn" id="1_xo0an"]
+[ext_resource type="PackedScene" uid="uid://d0dnsg611eogs" path="res://nodes/player.tscn" id="2_cmxd0"]
+[ext_resource type="PackedScene" uid="uid://cie5ctlcfo1dr" path="res://nodes/landing_pad.tscn" id="3_4qhj0"]
+[ext_resource type="PackedScene" uid="uid://dkkggvs2fs5h3" path="res://nodes/launch_pad.tscn" id="4_sjuii"]
+[ext_resource type="PackedScene" uid="uid://dgf287sw8cp5w" path="res://nodes/borders.tscn" id="5_ngd7t"]
+[ext_resource type="PackedScene" uid="uid://do4fvgs47r1ib" path="res://nodes/dust_particles.tscn" id="6_fbwsq"]
+[ext_resource type="PackedScene" uid="uid://c2jqcspsrtdss" path="res://nodes/star_particles.tscn" id="7_weeai"]
+[ext_resource type="PackedScene" uid="uid://cvp4q5lqe4xan" path="res://nodes/moving_obstacle.tscn" id="8_1402l"]
+[ext_resource type="PackedScene" uid="uid://b0qsvlc6qr77c" path="res://nodes/rock.tscn" id="9_eovay"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jtxs3"]
+sky_top_color = Color(0.054902, 0.0745098, 0.101961, 1)
+sky_horizon_color = Color(0.0823529, 0.0862745, 0.0862745, 1)
+sky_curve = 0.212132
+sky_energy_multiplier = 0.9
+sky_cover_modulate = Color(0.0470588, 0.0392157, 0.00784314, 1)
+ground_bottom_color = Color(0.25098, 0.141176, 0.0941176, 1)
+ground_horizon_color = Color(0.0823529, 0.0862745, 0.0901961, 1)
+ground_curve = 0.0414106
+
+[sub_resource type="Sky" id="Sky_ncmnv"]
+sky_material = SubResource("ProceduralSkyMaterial_jtxs3")
+
+[sub_resource type="Environment" id="Environment_4blnq"]
+background_mode = 2
+sky = SubResource("Sky_ncmnv")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Level" type="Node3D"]
+
+[node name="Floor" parent="." instance=ExtResource("1_xo0an")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 95)
+fov = 10.0
+
+[node name="Player" parent="." instance=ExtResource("2_cmxd0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 1, 0)
+
+[node name="LandingPad" parent="." instance=ExtResource("3_4qhj0")]
+next_level_file = ""
+
+[node name="LaunchPad" parent="." instance=ExtResource("4_sjuii")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4blnq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.25, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 0, 7.14291, -7.45291)
+light_color = Color(0.909804, 0.541176, 0.376471, 1)
+light_energy = 5.816
+light_indirect_energy = 6.333
+light_volumetric_fog_energy = 10.703
+light_angular_distance = 17.75
+shadow_enabled = true
+shadow_bias = 7.916
+shadow_normal_bias = 2.262
+shadow_reverse_cull_face = true
+shadow_transmittance_bias = -9.728
+shadow_blur = 0.734
+
+[node name="Borders" parent="." instance=ExtResource("5_ngd7t")]
+
+[node name="DustParticles" parent="." instance=ExtResource("6_fbwsq")]
+
+[node name="StarParticles" parent="." instance=ExtResource("7_weeai")]
+
+[node name="Obstacles" type="Node" parent="."]
+
+[node name="MovingObstacle" parent="Obstacles" instance=ExtResource("8_1402l")]
+transform = Transform3D(-1.17269, -3.82424, 0, 3.82424, -1.17269, 0, 0, 0, 4, -11.6008, 10.9909, 0)
+destination = Vector3(9, 0, 0)
+duration = 3.0
+
+[node name="MovingObstacle2" parent="Obstacles" instance=ExtResource("8_1402l")]
+transform = Transform3D(-1.17269, -3.82424, 0, 3.82424, -1.17269, 0, 0, 0, 4, 11.3854, 6.50812, 0)
+destination = Vector3(-9, 0, 0)
+duration = 3.0
+
+[node name="Floor" type="Node" parent="Obstacles"]
+
+[node name="RockBig" parent="Obstacles/Floor" instance=ExtResource("9_eovay")]
+transform = Transform3D(0.165783, 0.769572, -0.616665, -0.977574, 0.210591, 0, 0.129864, 0.602836, 0.787226, 0.820041, -1.66768, -0.3319)
+
+[node name="RockBig2" parent="Obstacles/Floor" instance=ExtResource("9_eovay")]
+transform = Transform3D(-0.0028739, -0.013342, -0.999907, -0.977574, 0.210591, 9.18902e-09, 0.210572, 0.977484, -0.0136479, 5.67636, -1.23137, -0.930744)
+
+[node name="RockBig3" parent="Obstacles/Floor" instance=ExtResource("9_eovay")]
+transform = Transform3D(0.156283, 0.725474, -0.670271, -0.889976, -0.190895, -0.414127, -0.428389, 0.661247, 0.615821, -6.55538, -0.571511, -1.07228)
+
+[node name="RockSmall" parent="Obstacles/Floor" instance=ExtResource("9_eovay")]
+transform = Transform3D(0.0997318, 0.46296, -0.160381, -0.488787, 0.105296, 8.76675e-09, 0.0337748, 0.156784, 0.47358, -1.87951, -0.326519, 1.03062)
+
+[node name="RockSmall2" parent="Obstacles/Floor" instance=ExtResource("9_eovay")]
+transform = Transform3D(0.0797854, 0.370368, -0.128304, 0.0962361, 0.108418, 0.372806, 0.379964, -0.10523, -0.0674815, 4.24321, 0.151674, 0.965494)
