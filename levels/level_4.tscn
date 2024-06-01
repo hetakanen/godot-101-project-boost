@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d3lt620y0vam2"]
+[gd_scene load_steps=12 format=3 uid="uid://d3lt620y0vam2"]
 
 [ext_resource type="PackedScene" uid="uid://d1hh582ui7mbc" path="res://nodes/floor.tscn" id="1_iwwj6"]
 [ext_resource type="PackedScene" uid="uid://d0dnsg611eogs" path="res://nodes/player.tscn" id="2_c1u0x"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cie5ctlcfo1dr" path="res://nodes/landing_pad.tscn" id="4_0tg5u"]
 [ext_resource type="PackedScene" uid="uid://dkkggvs2fs5h3" path="res://nodes/launch_pad.tscn" id="5_sn7y1"]
 [ext_resource type="PackedScene" uid="uid://dgf287sw8cp5w" path="res://nodes/borders.tscn" id="6_7ags6"]
-[ext_resource type="PackedScene" uid="uid://cqvgdjgu6emxe" path="res://nodes/background.tscn" id="7_uttgj"]
 [ext_resource type="PackedScene" uid="uid://do4fvgs47r1ib" path="res://nodes/dust_particles.tscn" id="8_t3np4"]
 [ext_resource type="PackedScene" uid="uid://c2jqcspsrtdss" path="res://nodes/star_particles.tscn" id="9_teyoi"]
 
@@ -69,9 +68,6 @@ shadow_transmittance_bias = -9.728
 shadow_blur = 0.734
 
 [node name="Borders" parent="." instance=ExtResource("6_7ags6")]
-
-[node name="Background" parent="." instance=ExtResource("7_uttgj")]
-visible = false
 
 [node name="DustParticles" parent="." instance=ExtResource("8_t3np4")]
 

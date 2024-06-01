@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cmxl3w0ar5ir"]
+[gd_scene load_steps=12 format=3 uid="uid://cmxl3w0ar5ir"]
 
 [ext_resource type="PackedScene" uid="uid://d0dnsg611eogs" path="res://nodes/player.tscn" id="1_2lakb"]
 [ext_resource type="PackedScene" uid="uid://cie5ctlcfo1dr" path="res://nodes/landing_pad.tscn" id="2_kx2k5"]
 [ext_resource type="PackedScene" uid="uid://b0qsvlc6qr77c" path="res://nodes/rock.tscn" id="3_3npno"]
 [ext_resource type="PackedScene" uid="uid://dkkggvs2fs5h3" path="res://nodes/launch_pad.tscn" id="4_v1w3l"]
 [ext_resource type="PackedScene" uid="uid://d1hh582ui7mbc" path="res://nodes/floor.tscn" id="5_6kjo0"]
-[ext_resource type="PackedScene" uid="uid://cqvgdjgu6emxe" path="res://nodes/background.tscn" id="6_5et55"]
 [ext_resource type="PackedScene" uid="uid://dgf287sw8cp5w" path="res://nodes/borders.tscn" id="7_6v6q1"]
 [ext_resource type="PackedScene" uid="uid://do4fvgs47r1ib" path="res://nodes/dust_particles.tscn" id="8_oo34m"]
 [ext_resource type="PackedScene" uid="uid://c2jqcspsrtdss" path="res://nodes/star_particles.tscn" id="9_hvv68"]
@@ -85,9 +84,6 @@ transform = Transform3D(0.265297, -0.86001, -3.84346e-09, -0.0420106, -0.0129595
 
 [node name="RockBig7" parent="CeilingRocks" instance=ExtResource("3_3npno")]
 transform = Transform3D(0.589548, -1.91113, -1.4752e-08, -0.0933568, -0.0287988, -1.99761, 1.90885, 0.588845, -0.0976979, -15.2635, 15.1416, -0.446213)
-
-[node name="Background" parent="." instance=ExtResource("6_5et55")]
-visible = false
 
 [node name="Borders" parent="." instance=ExtResource("7_6v6q1")]
 
