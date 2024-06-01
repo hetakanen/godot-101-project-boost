@@ -45,7 +45,7 @@ destination = Vector3(0, 9, 0)
 duration = 2.0
 
 [node name="LandingPad" parent="." instance=ExtResource("4_0tg5u")]
-next_level_file = ""
+next_level_file = "res://levels/level_5.tscn"
 
 [node name="LaunchPad" parent="." instance=ExtResource("5_sn7y1")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -12, 0, 0)
