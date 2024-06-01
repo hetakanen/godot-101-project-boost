@@ -71,3 +71,5 @@ shadow_blur = 0.734
 [node name="Title" parent="." instance=ExtResource("8_laipo")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 8.89714, -5.20633)
 script = ExtResource("9_op4qf")
+destination = Vector3(0, 2, 0)
+duration = 3.0
